@@ -84,10 +84,8 @@ class SocialGraph:
         random_friends = possible_friends[:total_friends]
         # print('Random friends: ', random_friends)
 
-        # counter = 0
         # 
         for friends in random_friends:
-            # counter += 1
             # Invoke method to fill friendships
             self.add_friendship(friends[0], friends[1])
 
@@ -106,13 +104,15 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
         queue = Queue()
         queue.enqueue([user_id]) # add user id to queue
-
+        # BFS to 
         while queue.size() > 0:
+            # keep a track of the path
             path_to_current_user = queue.dequeue() # get the current id
-            current_user = path_to_current_user[-1] # assign it to current user
+            current_user = path_to_current_user[-1] # grab last one assign it to current user
 
             if current_user not in visited: # if user not in visited
-                visited[current_user] = path_to_current_user # create id plus path
+                # add to the dict
+                visited[current_user] = path_to_current_user # mark as visited and remember path so far
                 # loop over friendships dict of sets to process friends of current friend
                 for friend in self.friendships[current_user]:
                     path_to_friend = [*path_to_current_user, friend]
@@ -131,7 +131,18 @@ if __name__ == '__main__':
     # sg.friends_info(1)
     # sg.average_degree_of_separation(1)
 
-    random_social = {
+    # for i in range(1, 300):
+    #     connections = sg.get_all_social_paths(i)
+    #     users_in_ext_network = len(connections) - 1
+    #     total_users = len(sg.users)
+    #     percentage = users_in_ext_network / total_users * 100
+
+    #     print(f'User {i}: Percentage: {percentage:.2f}')
+# users_in_ext_network = len(connections) - 1
+#         total_users = len(sg.users)
+
+#         print(f'Percentage: {users_in_ext_network / total_users * 100:.2f}')
+random_social = {
         1: {9, 3, 5, 7},
         2: set(),
         3: {1, 4},
