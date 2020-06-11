@@ -96,7 +96,7 @@ class Test(unittest.TestCase):
         self.assertIn(output, dft)
 
         sys.stdout = stdout_  # Restore stdout
-
+# Fai
     def test_bfs(self):
         bfs = [1, 2, 4, 6]
         self.assertListEqual(self.graph.bfs(1, 6), bfs)
